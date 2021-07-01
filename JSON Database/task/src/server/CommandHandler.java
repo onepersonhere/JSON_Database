@@ -8,15 +8,15 @@ import java.util.Map;
 
 public class CommandHandler {
     private String type = "";
-    private String key = "";
-    private String value = "";
-    public CommandHandler(String type, String key, String value){
+    private Object key = "";
+    private Object value = "";
+    public CommandHandler(String type, Object key, Object value){
         this.type = type;
         this.key = key;
         this.value = value;
     }
 
-    public CommandHandler(String type, String key){
+    public CommandHandler(String type, Object key){
         this.type = type;
         this.key = key;
     }
@@ -37,7 +37,7 @@ public class CommandHandler {
             }
         }
         if(type.equals("set")){
-            response = db.set(key, value);
+            response = db.set(value, key);
         }
         if(type.equals("delete")){
             response = db.delete(key);
@@ -52,7 +52,7 @@ public class CommandHandler {
             System.exit(0);
         }
 
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("response", response);
         if(response.equals("ERROR")){
             map.put("reason", reason);

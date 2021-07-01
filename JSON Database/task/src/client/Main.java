@@ -43,7 +43,7 @@ public class Main {
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {
-                data = myReader.nextLine();
+                data += myReader.nextLine();
             }
             readLock.unlock();
             myReader.close();
